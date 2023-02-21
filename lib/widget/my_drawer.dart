@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mkd_seller_app/screens/earnings_screen.dart';
+import 'package:mkd_seller_app/screens/history_screen.dart';
 import 'package:mkd_seller_app/screens/home_screen.dart';
+import 'package:mkd_seller_app/screens/new_orders_screen.dart';
 
 import '../authentication/auth_screen.dart';
 import '../global/global.dart';
@@ -84,7 +87,10 @@ class MyDrawer extends StatelessWidget {
                     "My Earnings",
                     style: TextStyle(color: Colors.black),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (c) => EraningsScreen()));
+                  },
                 ),
                 const Divider(
                   height: 10,
@@ -100,7 +106,10 @@ class MyDrawer extends StatelessWidget {
                     "New Orders",
                     style: TextStyle(color: Colors.black),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (c) => NewOrderScreen()));
+                  },
                 ),
                 const Divider(
                   height: 10,
@@ -116,7 +125,10 @@ class MyDrawer extends StatelessWidget {
                     "History - Orders",
                     style: TextStyle(color: Colors.black),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (c) => Historycreen()));
+                  },
                 ),
                 const Divider(
                   height: 10,

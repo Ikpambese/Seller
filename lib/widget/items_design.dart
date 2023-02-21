@@ -2,8 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:mkd_seller_app/models/items.dart';
-
-import 'package:mkd_seller_app/screens/items_screen.dart';
+import 'package:mkd_seller_app/screens/item_details_screen.dart';
 
 class ItemsDesignWidget extends StatefulWidget {
   Items? model;
@@ -20,10 +19,12 @@ class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // Navigator.push(
-        //     context,
-        //     MaterialPageRoute(
-        //         builder: (context) => ItemsScreen(model: widget.model)));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ItemDetailsScreen(
+                      model: widget.model!,
+                    )));
         // send to item screen the model at index of particaular item
       },
       splashColor: Colors.amber,
