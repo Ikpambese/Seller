@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mkd_seller_app/global/global.dart';
 import 'package:mkd_seller_app/models/menu_model.dart';
+import 'package:mkd_seller_app/splash/splash_screen.dart';
 import 'package:mkd_seller_app/uploadScreens/menu_upload_screen.dart';
 import 'package:mkd_seller_app/widget/info_design.dart';
 import 'package:mkd_seller_app/widget/my_drawer.dart';
@@ -17,6 +19,28 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  restrictctBlockedeSeller() async {
+    await FirebaseFirestore.instance
+        .collection('sellers')
+        .doc(firebaseAuth.currentUser!.uid)
+        .get()
+        .then((snapshot) {
+      if (snapshot.data()!['sellerSatus'] != 'approved') {
+        Fluttertoast.showToast(
+            msg: 'You have been blocked \n\n Mail Here : admin@lunchbox.com');
+        firebaseAuth.signOut();
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const MySplashScreen()));
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    restrictctBlockedeSeller();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
